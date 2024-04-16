@@ -3,6 +3,7 @@ package com.example.versusapi.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -17,12 +18,21 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 255)
+    @Column(nullable = false, length = 255)
     private String game;
 
     @Column(length = 255)
     private String stadium;
 
     @Column(length = 10)
-    private String data;
+    private String date;
+
+    @OneToMany(mappedBy = "match")
+    private List<MatchScores> matchScores;
+
+    @OneToOne(mappedBy = "match")
+    private Home home;
+
+    @OneToOne(mappedBy = "match")
+    private Away away;
 }

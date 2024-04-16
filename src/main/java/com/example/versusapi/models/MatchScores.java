@@ -9,12 +9,16 @@ public class MatchScores {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 255)
+    @Column(length = 255)
     private String player;
 
-    @Column(nullable = false)
+    @Column
     private int minute;
 
-    @Column(nullable = false, length = 255)
+    @Column(length = 255)
     private String mode;
+
+    @ManyToOne
+    @JoinColumn(name = "match_id")
+    private Match match;
 }

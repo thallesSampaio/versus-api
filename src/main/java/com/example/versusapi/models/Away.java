@@ -21,15 +21,19 @@ public class Away {
     @Column(nullable = false)
     private int goals;
 
-    @Column(nullable = false)
+    @Column
     private int ballPossession;
 
-    @Column(nullable = false)
+    @Column
     private int finishes;
 
-    @Column(nullable = false)
+    @Column
     private int passes;
 
-    @Column(nullable = false)
+    @Column
     private int fouls;
+
+    @OneToOne
+    @JoinColumn(name = "match_id")
+    private Match match;
 }
