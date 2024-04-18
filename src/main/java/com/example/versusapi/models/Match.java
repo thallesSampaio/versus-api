@@ -2,7 +2,9 @@ package com.example.versusapi.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,9 +18,10 @@ import java.util.UUID;
 public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
 
-    @Column(nullable = false, length = 255)
+    @Column(length = 255)
     private String game;
 
     @Column(length = 255)
@@ -27,12 +30,21 @@ public class Match {
     @Column(length = 10)
     private String date;
 
-    @OneToMany(mappedBy = "match")
-    private List<MatchScores> matchScores;
+    @Column(length = 255)
+    private String playersHome;
 
-    @OneToOne(mappedBy = "match")
-    private Home home;
+    @Column(length = 255)
+    private String homeTeam;
 
-    @OneToOne(mappedBy = "match")
-    private Away away;
+    @Column()
+    private int homeGoals;
+
+    @Column(length = 255)
+    private String awayTeam;
+
+    @Column()
+    private int awayGoals;
+
+    @Column(length = 255)
+    private String playersAway;
 }
