@@ -1,5 +1,6 @@
 package com.example.versusapi.models;
 
+import com.example.versusapi.dto.MatchRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
@@ -21,30 +22,42 @@ public class Match {
     @Column
     private Long id;
 
-    @Column(length = 255)
+    @Column(nullable = false, length = 255)
     private String game;
 
     @Column(length = 255)
     private String stadium;
 
-    @Column(length = 10)
+    @Column(nullable = false, length = 10)
     private String date;
 
-    @Column(length = 255)
+    @Column(nullable = false, length = 255)
     private String playersHome;
 
-    @Column(length = 255)
+    @Column(nullable = false, length = 255)
     private String homeTeam;
 
-    @Column()
+    @Column(nullable = false)
     private int homeGoals;
 
-    @Column(length = 255)
+    @Column(nullable = false, length = 255)
     private String awayTeam;
 
-    @Column()
+    @Column(nullable = false)
     private int awayGoals;
 
-    @Column(length = 255)
+    @Column(nullable = false, length = 255)
     private String playersAway;
+
+    public Match(MatchRequestDTO dto) {
+        this.game = dto.game();
+        this.stadium = dto.stadium();
+        this.date = dto.date();
+        this.playersHome = dto.playersHome();
+        this.homeTeam = dto.homeTeam();
+        this.homeGoals = dto.homeGoals();
+        this.playersAway = dto.playersAway();
+        this.awayTeam = dto.awayTeam();
+        this.awayGoals = dto.awayGoals();
+    }
 }
